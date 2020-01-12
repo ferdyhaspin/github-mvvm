@@ -37,6 +37,10 @@ android {
         experimental = true
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -74,6 +78,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxJava2AndroidVersion"
 
     kapt "com.android.databinding:compiler:$rootProject.gradleVersion"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     // Unit Test Dependencies
     testImplementation 'junit:junit:4.12'

@@ -1,4 +1,8 @@
 package app.ferdyhaspin.githubmvvm.data
 
-class RepoData {
-}
+class RepoData(
+    var repoName: String? = "-",
+    var language: String? = "-",
+    var repoDescription: String? = "-",
+    var url : String? = "-"
+)
