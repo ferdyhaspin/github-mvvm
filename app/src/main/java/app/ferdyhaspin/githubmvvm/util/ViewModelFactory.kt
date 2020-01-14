@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.ferdyhaspin.githubmvvm.data.source.MainDataRepository
 import app.ferdyhaspin.githubmvvm.main.MainViewModel
+import app.ferdyhaspin.githubmvvm.repo.RevoViewModel
 
 class ViewModelFactory private constructor(
     private val application: Application,
@@ -18,8 +19,8 @@ class ViewModelFactory private constructor(
         when{
             isAssignableFrom(MainViewModel::class.java) ->
                 MainViewModel(application,mainDataRepository)
-//            isAssignableFrom(RepoViewModel::class.java) ->
-//                RepoViewModel(application, mainDataRepository)
+            isAssignableFrom(RevoViewModel::class.java) ->
+                RevoViewModel(application, mainDataRepository)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

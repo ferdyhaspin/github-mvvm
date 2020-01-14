@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import app.ferdyhaspin.githubmvvm.databinding.FragmentMainBinding
-import app.ferdyhaspin.githubmvvm.util.obtainViewModel
 
 
 /**
@@ -28,7 +27,7 @@ class MainFragment : Fragment() {
         viewBinding = FragmentMainBinding.inflate(inflater, container, false).apply {
             vm = (activity as MainActivity).obtainViewModel()
 
-            action = object :  MainActionListener {
+            action = object : MainActionListener {
                 override fun onClickRepos() {
                     vm?.openRepo()
                 }

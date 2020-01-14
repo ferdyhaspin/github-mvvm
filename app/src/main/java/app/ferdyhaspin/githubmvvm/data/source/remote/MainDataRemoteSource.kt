@@ -1,6 +1,8 @@
 package app.ferdyhaspin.githubmvvm.data.source.remote
 
 import android.util.Log
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import app.ferdyhaspin.githubmvvm.api.ApiService
 import app.ferdyhaspin.githubmvvm.api.dao.RepoDataDao
 import app.ferdyhaspin.githubmvvm.data.MainData
@@ -15,6 +17,7 @@ object MainDataRemoteSource : MainDataSource {
 
     private val apiService = ApiService.create()
     private val compositeDisposable = CompositeDisposable()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     override fun getMainData(callback: MainDataSource.GetMainDataCallback) {
         compositeDisposable.add(
@@ -49,13 +52,13 @@ object MainDataRemoteSource : MainDataSource {
             apiService.getReposData(Constant.username)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe {  }
                 .subscribe({
                     run {
-
                         if (it.isNotEmpty()) {
                             Log.i("xx", " ${it.size}")
 
-                            val listRepo: MutableList<RepoData?> = mutableListOf<RepoData?>()
+                            val listRepo: MutableList<RepoData?> = mutableListOf()
                             for (item: RepoDataDao in it) {
                                 val repoData = RepoData(
                                     item.name,
